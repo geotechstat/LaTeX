@@ -1,0 +1,162 @@
+% PRETTY SETTINGS
+
+% 1. When Printing a book or having different margins "twoside" should be added.
+
+    \documentclass[12pt,a4paper,twoside]{article}
+    
+    
+    % DEFULT LATEX SETTINGS
+
+% 2. Change font, i like mathpazo, it gives thicker, easy-read letters.
+
+    \usepackage[sc]{mathpazo}
+    
+    \usepackage[T1]{fontenc}		% Output settings
+    \usepackage[english]{babel}		% Language settings
+    \usepackage{lipsum}             % Create blind text
+    \usepackage[utf8]{inputenc}
+
+
+% 3. Page margin lengths
+
+    % the deafults are to narrow. but to long may make the text hard to read. The fontsize here matters, the selcted 12pt (see documentclass) is easily read with 3.5 cm Left and 3.5 cm Right.
+    
+    \usepackage[top=3cm, bottom=3cm,inner=3.5cm, outer=3.5cm]{geometry}		
+		
+% 4. Paragraph spacing
+
+    % Some air between each paragraph was selected, i like idents and to make it look geometrically nice i picked half the value for the indent compared to the parskip.
+    
+    \setlength{\parindent}{1em} 
+    \setlength{\parskip}{0.5em}
+
+% 5. Title style
+
+    % To get a good contrast between what is title and text different fonts can be used. This is done with the "titlesec" package. 
+
+    % Change section
+
+    \usepackage{titlesec} 
+
+    \titleformat{\section}[hang]{
+    \usefont{T1}{qhv}{b}{n}\selectfont} % where: "qhv" - TeX Gyre Heros, "b" - bold
+    {} 
+    {0em}
+    {\hspace{-0.3pt}\Large % Size
+    \thesection\hspace{0.6em} } % indent from number
+
+    \titlespacing*{\section}{0pt}{6pt}{6pt}
+
+    % Subsection
+
+    \titleformat{\subsection}[hang]{
+    \usefont{T1}{qhv}{b}{n}\selectfont} % where: "qhv" - TeX Gyre Heros, "b" - bold
+    {} 
+    {0em}
+    {\hspace{-0.3pt}\large  % Size
+    \thesubsection\hspace{0.6em}} % indent from number
+    
+    \titlespacing*{\subsection}{0pt}{6pt}{6pt}
+    
+    % Subsubsection
+
+
+    \titleformat{\subsubsection}[hang]{
+    \usefont{T1}{qhv}{b}{n}\selectfont} % where: "qhv" - TeX Gyre Heros, "b" - bold
+    {} 
+    {0em}
+    {\hspace{-0.3pt}\normalsize % Size
+    \thesubsubsection\hspace{0.6em}} % indent from number
+
+    % \titlespacing*{<command>}{<left>}{<before-sep>}{<after-sep>} 
+    \titlespacing*{\subsubsection}{0pt}{6pt}{6pt}
+
+% 7. Footers and Headers 
+
+    % To get better orientation inside the report good use of Footers and Headers should be used. In my
+    
+    \usepackage{fancyhdr}						
+    \pagestyle{fancy}  
+
+% 7.1 Page numbering
+
+    \fancyhf{}
+            
+    % For instance, \fancyhead[LE,RO]{Share\LaTeX} will print the text "ShareLaTeX" on the Left side of the header for Even pages, and the Right side for Odd pages.
+   
+% 7.2 No header, on Section page.
+
+    % To apply: \section{section name}\thispagestyle{FooBar}
+    
+    \fancypagestyle{FooBar}{%
+    \fancyhead{}
+    \renewcommand{\headrulewidth}{0pt}
+     }
+    
+% 7.3 Header
+    
+    % Displays section name (no number) on the left side, and subsection name (with number) on the right side
+    % font same as header (ghv)
+    
+    % Section name, no number
+    
+    % Removes section number in header
+    \renewcommand{\sectionmark}[1]{\markboth{#1}{}}
+    
+    % Left-Odd page
+    \fancyhead[LO]{\nouppercase{ \bfseries\fontfamily{qhv}\selectfont\rightmark
+    }}
+    
+    % Left-Even page
+    \fancyhead[LE]{\nouppercase{       \bfseries\fontfamily{qhv}\selectfont\leftmark}} 
+    
+    % Header line
+    \renewcommand{\headrulewidth}{0.4pt} % line width
+
+% 7.4 Footer
+
+    % Page number, Left-Odd page , Righ-Even page
+    \fancyfoot[RO,LE]{\thepage} 
+    
+    % University name and Thesis ID number
+    \fancyfoot[LO,RE]{\small
+    \fontfamily{phv}\selectfont 
+    % Chalmers in font: Arial (phv)
+    \textbf{CHALMERS}, Master's Thesis NR:000000}
+    
+
+
+
+% MAIN DOCUMENT
+
+\begin{document}
+ 
+\section{Pretty \LaTeX{}  settings}\thispagestyle{FooBar}
+ 
+\lipsum[1-2] 
+
+ 
+ \lipsum[3-5] 
+ 
+\subsection{First Section}
+
+\lipsum[1]
+\begin{equation}
+f(t)=\left\{ \begin{array}{ll}
+1,~~~~ & t< 1 \\
+t^2 & t\geq 1
+
+\end{array}\right.
+\end{equation}
+ 
+\lipsum[3-7]
+
+\subsection{Second Section}
+
+\lipsum[4-8]
+
+\subsection{Third Section}
+
+\lipsum[6-10]
+ 
+\end{document}
